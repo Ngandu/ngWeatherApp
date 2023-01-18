@@ -1,0 +1,67 @@
+<div class="search">
+  <form action="" #form="ngForm" (submit)="onSubmit()">
+    <input type="text" placeholder="Search City" name="city" [(ngModel)]="cityName">
+  </form>
+</div>
+
+<div class="container" *ngIf="weatherData">
+  <div class="upper-data">
+    
+    <div class="weather-data">
+      <div class="tempreture">{{weatherData.current.temp_c | number: '1.0-0'}}ºC</div>
+      <div class="more-info-label">
+        Condition: {{weatherData.current.condition.text}}
+      </div>
+    </div>
+  </div>
+  <div class="lower-data">
+    <div class="more-info-label">
+      More Information
+    </div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/min_icon.png" alt="">
+          <span>Min</span>
+        </div>
+        <div class="info-block-value"> 
+          {{weatherData.current.temp_c - 5}}ºC
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/max_icon.png" alt="">
+          <span>Max</span>
+        </div>
+        <div class="info-block-value"> 
+          {{weatherData.current.temp_c + 9}}ºC
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/Humidity_icon.png" alt="">
+          <span>Humidity</span>
+        </div>
+        <div class="info-block-value"> 
+          {{weatherData.current.humidity}}%
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind_icon.png" alt="">
+          <span>Wind Speed</span>
+        </div>
+        <div class="info-block-value"> 
+          {{weatherData.current.wind_kph}} km/h
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="backgroundImage" *ngIf="weatherData">
+
+  <img src="../assets/cold.jpg" *ngIf="weatherData.current.temp_c < 15" alt="">
+  <img src="../assets/hot.jpg" *ngIf="weatherData.current.temp_c > 15" alt="">
+</div>
+<router-outlet></router-outlet>
